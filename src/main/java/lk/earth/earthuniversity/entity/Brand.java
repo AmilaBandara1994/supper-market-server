@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-public class Empstatus {
+public class Brand {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -15,9 +15,13 @@ public class Empstatus {
     @Column(name = "name")
     private String name;
 
+
     @JsonIgnore
-    @OneToMany(mappedBy = "empstatus")
-    private Collection<Employee> employees;
+    @OneToMany(mappedBy = "brand")
+    private Collection<Categorybrand> categorybrands;
+    @JsonIgnore
+    @OneToMany(mappedBy = "brand")
+    private Collection<Item> items;
 
     public Integer getId() {
         return id;
@@ -40,10 +44,10 @@ public class Empstatus {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Empstatus empstatus = (Empstatus) o;
+        Brand brand = (Brand) o;
 
-        if (id != null ? !id.equals(empstatus.id) : empstatus.id != null) return false;
-        if (name != null ? !name.equals(empstatus.name) : empstatus.name != null) return false;
+        if (id != null ? !id.equals(brand.id) : brand.id != null) return false;
+        if (name != null ? !name.equals(brand.name) : brand.name != null) return false;
 
         return true;
     }
@@ -55,11 +59,19 @@ public class Empstatus {
         return result;
     }
 
-    public Collection<Employee> getEmployees() {
-        return employees;
+    public Collection<Categorybrand> getCategorybrands() {
+        return categorybrands;
     }
 
-    public void setEmployees(Collection<Employee> employees) {
-        this.employees = employees;
+    public void setCategorybrands(Collection<Categorybrand> categorybrands) {
+        this.categorybrands = categorybrands;
+    }
+
+    public Collection<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(Collection<Item> items) {
+        this.items = items;
     }
 }

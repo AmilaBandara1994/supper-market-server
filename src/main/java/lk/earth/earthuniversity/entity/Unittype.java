@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-public class Empstatus {
+public class Unittype {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -16,8 +16,8 @@ public class Empstatus {
     private String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "empstatus")
-    private Collection<Employee> employees;
+    @OneToMany(mappedBy = "unittype")
+    private Collection<Item> items;
 
     public Integer getId() {
         return id;
@@ -40,10 +40,10 @@ public class Empstatus {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Empstatus empstatus = (Empstatus) o;
+        Unittype unittype = (Unittype) o;
 
-        if (id != null ? !id.equals(empstatus.id) : empstatus.id != null) return false;
-        if (name != null ? !name.equals(empstatus.name) : empstatus.name != null) return false;
+        if (id != null ? !id.equals(unittype.id) : unittype.id != null) return false;
+        if (name != null ? !name.equals(unittype.name) : unittype.name != null) return false;
 
         return true;
     }
@@ -55,11 +55,11 @@ public class Empstatus {
         return result;
     }
 
-    public Collection<Employee> getEmployees() {
-        return employees;
+    public Collection<Item> getItems() {
+        return items;
     }
 
-    public void setEmployees(Collection<Employee> employees) {
-        this.employees = employees;
+    public void setItems(Collection<Item> items) {
+        this.items = items;
     }
 }
