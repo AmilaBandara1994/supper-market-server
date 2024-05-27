@@ -1,6 +1,8 @@
 package lk.earth.earthuniversity.report;
 
+import lk.earth.earthuniversity.report.dao.CountByCategoryDao;
 import lk.earth.earthuniversity.report.dao.CountByDesignaitonDao;
+import lk.earth.earthuniversity.report.entity.CountByCategory;
 import lk.earth.earthuniversity.report.entity.CountByDesignation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,6 +20,9 @@ public class ReportController {
     @Autowired
     private CountByDesignaitonDao countbydesignaitondao;
 
+    @Autowired
+    private CountByCategoryDao countByCategoryDao;
+
     @GetMapping(path ="/countbydesignation",produces = "application/json")
     public List<CountByDesignation> get() {
 
@@ -34,8 +39,13 @@ public class ReportController {
             percentage = Math.round(percentage * 100.0) / 100.0;
             countByDesignation.setPercentage(percentage);
         }
-
         return designations;
+    }
+
+    @GetMapping(path ="/countbycategory",produces = "application/json")
+    public List<CountByCategory> getCategories() {
+        List<CountByCategory> countByCategories = this.countByCategoryDao.countByCategory();
+        return countByCategories;
     }
 }
 

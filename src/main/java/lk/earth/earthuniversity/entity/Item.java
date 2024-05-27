@@ -1,6 +1,9 @@
 package lk.earth.earthuniversity.entity;
 
+import lk.earth.earthuniversity.util.RegexPattern;
+
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.Arrays;
@@ -12,27 +15,34 @@ public class Item {
     @Column(name = "id")
     private Integer id;
     @Basic
+    @Pattern(regexp = "^[A-Z]{1}[a-z]+\\s[A-Z]{1}[a-z]+\\s?(?:[A-Z]{1}[a-z]+\\s)?[\\d]{1,3}(kg|g|l|ml)$", message = "Invalid Name")
     @Column(name = "name")
     private String name;
     @Basic
+    @Pattern(regexp = "^[I]\\d{5}$", message = "Invalid Code")
     @Column(name = "code")
     private String code;
     @Basic
     @Column(name = "sprice")
+    @RegexPattern(reg = "^\\d{2,5}(?:[.]\\d{2})?$", msg="Invalid Sale Price")
     private BigDecimal sprice;
     @Basic
+    @RegexPattern(reg = "^\\d{2,5}(?:[.]\\d{2})?$", msg="Invalid purchase  Price")
     @Column(name = "pprice")
     private BigDecimal pprice;
     @Basic
     @Column(name = "photo")
     private byte[] photo;
     @Basic
+    @RegexPattern(reg = "^\\d{2,4}$" , msg = "Invalid quantity")
     @Column(name = "quantity")
     private Integer quantity;
     @Basic
+    @RegexPattern(reg = "^\\d{2}$", msg = "Invalid ROP")
     @Column(name = "rop")
     private Integer rop;
     @Basic
+    @RegexPattern(reg = "^\\d{2}-\\d{2}-\\d{2}$", msg = "Invalid Date Format")
     @Column(name = "dointroduced")
     private Date dointroduced;
     @ManyToOne
