@@ -15,30 +15,30 @@ public class Item {
     @Column(name = "id")
     private Integer id;
     @Basic
-    @Pattern(regexp = "/^[A-Z]{1}[a-z]+\\s[A-Z]{1}[a-z]+\\s?(?:[A-Z]{1}[a-z]+\\s)?[\\d]{1,3}(kg|g|l|ml)$/gm", message = "Invalid Name")
+    @Pattern(regexp = "^[A-Z]{1}[a-z]+\\s[A-Z]{1}[a-z]+\\s?(?:[A-Z]{1}[a-z]+\\s)?[\\d]{1,3}(kg|g|l|ml)$", message = "Invalid Name")
     @Column(name = "name")
     private String name;
     @Basic
-    @Pattern(regexp = "/^[I]\\d{5}$/gm", message = "Invalid Code")
+    @Pattern(regexp = "^[I]\\d{5}$", message = "Invalid Code")
     @Column(name = "code")
     private String code;
     @Basic
     @Column(name = "sprice")
-    @RegexPattern(reg = "/^\\d{2,5}(?:[.]\\d{2})?$", msg="Invalid Sale Price")
+    @RegexPattern(reg = "^\\d{2,5}(?:[.]\\d{2})?$", msg="Invalid Sale Price")
     private BigDecimal sprice;
     @Basic
-    @RegexPattern(reg = "/^\\d{2,5}(?:[.]\\d{2})?$", msg="Invalid purches  Price")
+    @RegexPattern(reg = "^\\d{2,5}(?:[.]\\d{2})?$", msg="Invalid purchase  Price")
     @Column(name = "pprice")
     private BigDecimal pprice;
     @Basic
     @Column(name = "photo")
     private byte[] photo;
     @Basic
-    @Pattern(regexp = "^\\d{2,4}$" , message = "Invalid quantity")
+    @RegexPattern(reg = "^\\d{2,4}$" , msg = "Invalid quantity")
     @Column(name = "quantity")
     private Integer quantity;
     @Basic
-    @Pattern(regexp = "^\\d{2}$", message = "Invalid ROP")
+    @RegexPattern(reg = "^\\d{2}$", msg = "Invalid ROP")
     @Column(name = "rop")
     private Integer rop;
     @Basic
